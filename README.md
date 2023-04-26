@@ -50,7 +50,7 @@ $ hexapterygon ./my_debloating_list.txt
 ```terminal
 $ hexapterygon ./folder_full_of_lists_named_by_type_identifier_txt
 ```
-<sup>[*(Lists should be in this form)*](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list)</sup>
+<sup>[*(Lists should be in this form)*](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/blob/main/devices/Xiaomi%20Redmi%205A%20riva.txt)</sup>
 
 
 # 🫴 Contribute
