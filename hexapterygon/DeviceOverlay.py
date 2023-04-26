@@ -5,7 +5,7 @@ from   .StateEnums            import DownloadState, InstallState, UninstallState
 from   ppadb.device           import Device
 from   .DeviceEvents          import DeviceEvents
 from   sys                    import version_info
-import HexaGlobals          as     g
+import .HexaGlobals          as     g
 import requests
 
 if version_info >= (3,10): # because i think it has a C implementation too (from _bisect import *)
