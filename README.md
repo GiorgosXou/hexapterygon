@@ -117,7 +117,8 @@ Just run the command `hexapterygon --getid` *(while your authorized device is co
 <!---->
 
 # 💗 Donate
-
+- ***[PayPal Address](https://www.paypal.com/donate/?hosted_button_id=XLWAVDMHBYACY)***
+- ***Monero Address:*** `83dxyGp3oemQvPBNKiBy61eFX9GZWruEjcNyNH2Dmgiu3HDaZ8REaoYVpGTb3AHR5ccitoKtH53wdQUN3tBJN8aMFMxhWAt`
 
 # 🕳️ Outro
 This is part 1/3 of a software series project called "beyond self destruction" which rises from within one's self
