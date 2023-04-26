@@ -1,8 +1,8 @@
-import sys                                                          # TESTING: UNCOMMENT TO USE LOCAL PACKAGE (./__init__.py) | https://stackoverflow.com/a/25888670/11465149
-from os.path import dirname, abspath                                # TESTING: UNCOMMENT TO USE LOCAL PACKAGE (./__init__.py) | https://stackoverflow.com/a/25888670/11465149
-sys.path.insert(0, dirname(dirname(abspath(__file__))))             # TESTING: UNCOMMENT TO USE LOCAL PACKAGE (./__init__.py) | https://stackoverflow.com/a/25888670/11465149
-sys.path.append('..')                                               # TESTING WITH DAP
-sys.path.append('/home/xou/.local/lib/python3.10/site-packages/')   # TESTING WITH DAP
+# import sys                                                          # TESTING: UNCOMMENT TO USE LOCAL PACKAGE (./__init__.py) | https://stackoverflow.com/a/25888670/11465149
+# from os.path import dirname, abspath                                # TESTING: UNCOMMENT TO USE LOCAL PACKAGE (./__init__.py) | https://stackoverflow.com/a/25888670/11465149
+# sys.path.insert(0, dirname(dirname(abspath(__file__))))             # TESTING: UNCOMMENT TO USE LOCAL PACKAGE (./__init__.py) | https://stackoverflow.com/a/25888670/11465149
+# sys.path.append('..')                                               # TESTING WITH DAP
+# sys.path.append('/home/xou/.local/lib/python3.10/site-packages/')   # TESTING WITH DAP
 from hexapterygon import Hexapterygon, __version__, get_global_server_repo, set_github_token, set_global_server_repo
 import argparse
 
