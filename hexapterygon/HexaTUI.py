@@ -7,7 +7,7 @@ from .TUItilities import Border, Highlight, Label, TextBox, Parent
 from time import sleep
 import re
 import threading
-import HexaGlobals as g
+import hexapterygon.HexaGlobals as g
 
 
 class HexaTUI(Parent): # And a Component that can be used stand alone as it is with a uni-curses project | uni-curses compatible component

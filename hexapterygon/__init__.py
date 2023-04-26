@@ -4,7 +4,7 @@ from os             import makedirs
 from .DeviceEvents  import DeviceEvents
 from .DeviceOverlay import DeviceOverlay
 from github         import Github
-import .HexaGlobals  as g
+import hexapterygon.HexaGlobals as g
 from shutil import rmtree
 
 
