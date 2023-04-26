@@ -13,7 +13,7 @@ if sys.version_info.major < 3:
 
 setup(
     name="hexapterygon",
-    version="1.0.0",
+    version="1.0.1",
     description="A user-friendly all-in-one cross-platform, (uni-curses compatible component, module and uitility) software for orchestrating and debloating your Android devices from unwanted pre-installed crap.",
     #long_description=readfile('README.md'),
     author="George Chousos",
