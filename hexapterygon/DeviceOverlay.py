@@ -145,7 +145,7 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
     def install(self, package, *args): # TODO split (| version)
         if not self.install_allowed: return False
         tmp_pkg_splt = package.split('|')
-        version = None if len(tmp_pkg_splt) == 1 else int(tmp_pkg_splt[1].split('#')(0))
+        version = None if len(tmp_pkg_splt) == 1 else int(tmp_pkg_splt[1])
         package = tmp_pkg_splt[0]
         if isfile(package) and package.endswith('.apk'):
             package = package
