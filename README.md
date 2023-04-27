@@ -100,7 +100,7 @@ Just run the command `hexapterygon --getid` *(while your authorized device is co
 
 
 
-<!-- # 🔍 Research --> :P no! i have done way more reasearch 
+<!-- # 🔍 Research :P no! i have done way more reasearch --> 
 <!-- - ***ADB Related:*** -->
 <!-- - - ***Python Libraries:*** -->
 <!-- - - - [pure-python-adb *(Currently using)*](https://github.com/Swind/pure-python-adb) -->
