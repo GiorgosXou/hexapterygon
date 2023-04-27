@@ -200,7 +200,7 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
         else: # TODO: Add extra instruction called EXTERNAL (or something) for external shell commands if user allows so by arg
             tmp_split   = instruction.split('#')
             comment     = tmp_split[len(tmp_split)-1].strip()
-            instruction = tmp_split[0]
+            instruction = tmp_split[0].strip()
             self.event_debloat(instruction, comment)
             self.__temp_instriction_call(instruction)
 
