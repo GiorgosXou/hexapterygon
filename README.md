@@ -19,11 +19,18 @@ Less bloatware, less spyware, improved privacy and performance from within the e
 
 
 # 📦 Features
-- [Uni-curses](https://github.com/unicurses/unicurses) compatible component
-- Auto removes-installs-executes
-- User-friendly \ easy-to-use
-- Can be used as a module
-- Cross-platform
+- ***Current:***
+- - [Uni-curses](https://github.com/unicurses/unicurses) compatible component
+- - Auto removes-installs-executes
+- - User-friendly \ easy-to-use
+- - Can be used as a module
+- - Cross-platform
+- ***Future:***
+- - Rooting
+- - Restoring 
+- - Better Security
+- - Better User-Interface
+- - [More auto-debloating lists](https://github.com/GiorgosXou/hexapterygon/tree/main/device_repo_lists)
 
 
 # ⚙️ Configure
