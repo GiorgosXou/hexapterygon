@@ -73,6 +73,8 @@ Propose whatever you want, just don't mess up with my weird indentation :P
 # 🗺️ Documentation
 The only documentation that you need is the code itself. JK, it is under construction 🛠️🏗️
 
+# 🔍 Research
+My research can be found under my personal debloating list [here](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/#research) 
 
 # 💭 Questions
 
