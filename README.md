@@ -126,7 +126,7 @@ Just run the command `hexapterygon --getid` *(while your authorized device is co
 # 🕳️ Outro
 This is part 1/3 of a software series project called "beyond self destruction" which rises from within one's self. For those wondering: "Debloating Android Devices" = "Uninstalling\Deleting preinstalled unwanted data-collecting\spyware apps and etc." = "better performance" = "Unleashing the power of self destruction"
 
-Just some reminders:
+Just some reminders *(related to phone companies)*:
 - [Greek wiretapping case 2004–05](https://en.wikipedia.org/wiki/Greek_wiretapping_case_2004%E2%80%9305)
 - [Huawei Security Scandal](https://www.forbes.com/sites/kateoflahertyuk/2019/02/26/huawei-security-scandal-everything-you-need-to-know/?sh=4a1946e473a5)
 - [(Apple's) Batterygate](https://en.wikipedia.org/wiki/Batterygate)
