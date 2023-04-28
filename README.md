@@ -50,7 +50,7 @@ $ hexapterygon ./my_debloating_list.txt
 ```terminal
 $ hexapterygon ./folder_full_of_lists_named_by_type_identifier_txt
 ```
-<sup>[*(Lists should be in this form)*](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/blob/main/devices/Xiaomi%20Redmi%205A%20riva.txt)</sup>
+<sup>[*(Lists should be in this form)*](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/blob/main/devices/Xiaomi%20Redmi%205A%20riva.txt) | [Demonstration of results](https://odysee.com/hexapterygon:9)</sup>
 
 <img style="center" src="./imgs/Peek.gif">
 
@@ -126,7 +126,7 @@ Just run the command `hexapterygon --getid` *(while your authorized device is co
 # 🕳️ Outro
 This is part 1/3 of a software series project called "beyond self destruction" which rises from within one's self. For those wondering: "Debloating Android Devices" = "Uninstalling\Deleting preinstalled unwanted data-collecting\spyware apps and etc." = "better performance" = "Unleashing the power of self destruction"
 
-Just some reminders *(related to phone companies)*:
+Just some reminders (related to phone companies)*:
 - [Greek wiretapping case 2004–05](https://en.wikipedia.org/wiki/Greek_wiretapping_case_2004%E2%80%9305)
 - [Huawei Security Scandal](https://www.forbes.com/sites/kateoflahertyuk/2019/02/26/huawei-security-scandal-everything-you-need-to-know/?sh=4a1946e473a5)
 - [(Apple's) Batterygate](https://en.wikipedia.org/wiki/Batterygate)
