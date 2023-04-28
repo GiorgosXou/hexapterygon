@@ -124,7 +124,7 @@ Just run the command `hexapterygon --getid` *(while your authorized device is co
 - ***Monero Address:*** `83dxyGp3oemQvPBNKiBy61eFX9GZWruEjcNyNH2Dmgiu3HDaZ8REaoYVpGTb3AHR5ccitoKtH53wdQUN3tBJN8aMFMxhWAt`
 
 # 🕳️ Outro
-This is part 1/3 of a software series project called "beyond self destruction" which rises from within one's self
+This is part 1/3 of a software series project called "beyond self destruction" which rises from within one's self. For those wondering: `Debloating Android Devices` = `Uninstalling\Deleting preinstalled unwanted data-collecting\spyware apps and etc.` = `better performance` = `Unleashing the power of self destruction`
 
 Just some reminders:
 - [Huawei Security Scandal](https://www.forbes.com/sites/kateoflahertyuk/2019/02/26/huawei-security-scandal-everything-you-need-to-know/?sh=4a1946e473a5)
