@@ -37,6 +37,7 @@ Less bloatware, less spyware, improved privacy and performance from within the e
 
 Before begining the process of debloating, make sure you:
 
+- Backed-up your personal data *(Advised)*
 - `pip install hexapterygon --upgrade`
 - Have [Android SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools) installed 
 - Enabled `developer mode` & `USB debugging` *(under settings)*
