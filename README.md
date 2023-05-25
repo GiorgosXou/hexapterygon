@@ -23,6 +23,7 @@ Less bloatware, less spyware, improved privacy and performance from within the e
 - - [Uni-curses](https://github.com/unicurses/unicurses) compatible component
 - - Auto removes-installs-executes
 - - User-friendly \ easy-to-use
+- - Fixed-version pkg control
 - - Can be used as a module
 - - Cross-platform
 - ***Future:***
@@ -58,7 +59,7 @@ $ hexapterygon ./my_debloating_list.txt
 ```terminal
 $ hexapterygon ./folder_full_of_lists_named_by_type_identifier_txt
 ```
-<sup>[*(Lists should be in this form)*](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/blob/main/devices/Xiaomi%20Redmi%205A%20riva.txt) | [Demonstration of results](https://odysee.com/hexapterygon:9)</sup>
+[*(Lists should be in this form)*](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/blob/main/devices/Xiaomi%20Redmi%205A%20riva.txt) | [Demonstration of results](https://odysee.com/hexapterygon:9)
 
 <img style="center" src="./imgs/Peek.gif">
 
@@ -69,7 +70,7 @@ Your lists is what makes this tool actually powerfull and user-friendly, without
 - ***Create a new repository with a folder called `devices` where you:***
 - - Create your debloating-list(s) in the form of `{type_identifier}.txt` 
 - - - (use: `hexapterygon --getid` to get the `{type_identifier}`)
-- - - (Take as an example this list)
+- - - [(Take this list as an example)](https://github.com/GiorgosXou/Our-Xiaomi-Redmi-5A-riva-debloating-list/blob/main/devices/Xiaomi%20Redmi%205A%20riva.txt)
 - ***Make a pull-request or open an issue and:*** 
 - - ask to add your repo (see `device_repo_lists`)
 
