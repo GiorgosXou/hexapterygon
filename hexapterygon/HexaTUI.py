@@ -164,7 +164,12 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
         for repo in reversed(repos):
             stars = repo[0]
             digit_len_of_repo = self.__get_len_of_int(stars)
-            self.textbox_instructions.text = f'│ ★  {i}. ' + f'[{stars} ' + ' '* (digit_len_of_most_started_repo - digit_len_of_repo) + f'Stars] "{repo[2].strip()}"\n' + self.textbox_instructions.text 
+            description_summarry = f'│ ★  {i}. ' + f'[{stars} ' + ' '* (digit_len_of_most_started_repo - digit_len_of_repo) + f'Stars] "{repo[2].strip()}"'
+            if repo[3]:
+                description_summarry += '\n│ ░  ┌─'
+                description_summarry += '\n│ ░  ├─ '.join(repo[3])
+                description_summarry += '\n│ ░  └─\n'
+            self.__append_instruction_text(description_summarry) 
             i -=1
         self.label_device.text = f'⟡ Select a debloating-list for {device.type_identifier}:'; self.refresh()
         while not self.feedback or self.__validate_feedback(repos) : sleep(1) # I thought about it before looking into there https://superfastpython.com/thread-wait-for-result/ | feedback - no need for validation if int as of now
