@@ -76,7 +76,17 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
         return False
 
 
-    def get_available_repos(self): # TODO: Maybe add a limit because of the github's limit for requests (without key) [if too many lists for one device] | Maybe add recursion with 'device' -> 'devices' if list 
+    def get_summary(self, repo): # meh
+        config = repo.get_contents(f"devices/{self.type_identifier}.txt")
+        lines = config.decoded_content.decode().splitlines() # Eww
+        if lines[0].strip() != '[SUMMARY]': return []
+        summary = ['']
+        for ln in lines[1:]:
+            if ln.strip() == '': return summary
+            summary.append(ln.strip())
+
+
+    def get_available_repos(self, get_summary=False): # TODO: Maybe add a limit because of the github's limit for requests (without key) [if too many lists for one device] | Maybe add recursion with 'device' -> 'devices' if list 
         try:
             repo = g.GIT.get_repo(self.config) 
             config = repo.get_contents(f'device_repo_lists/{self.type_identifier}.txt')
@@ -89,7 +99,7 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
                 split_repo_line = repo_line.split('|')
                 repo = g.GIT.get_repo(split_repo_line[0].strip())
                 if not self.is_repo_valid(repo): continue
-                if repo: insort_left(repos, (repo.stargazers_count, repo.full_name, split_repo_line[1] if len(split_repo_line) > 1 else split_repo_line[0]), key=lambda x: -x[0]) # ('|')[1] = Description
+                if repo: insort_left(repos, (repo.stargazers_count, repo.full_name, split_repo_line[1] if len(split_repo_line) > 1 else split_repo_line[0], self.get_summary(repo) if get_summary else []), key=lambda x: -x[0]) # ('|')[1] = Description
             except UnknownObjectException as e:
                 continue # ignore the bad repository or list them ?
         return repos
@@ -197,7 +207,8 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
         elif   instruction == '[UNINSTALL]': self.__temp_instriction_call = self.uninstall
         elif   instruction == '[INSTALL]'  : self.__temp_instriction_call = self.install
         elif   instruction == '[SHELL]'    : self.__temp_instriction_call = self.__shell 
-        else: # TODO: Add extra instruction called EXTERNAL (or something) for external shell commands if user allows so by arg
+        elif   instruction == '[SUMMARY]'  : self.__temp_instriction_call = None
+        elif self.__temp_instriction_call: # TODO: Add extra instruction called EXTERNAL (or something) for external shell commands if user allows so by arg
             tmp_split   = instruction.split('#')
             comment     = tmp_split[len(tmp_split)-1].strip()
             instruction = tmp_split[0].strip()
