@@ -139,7 +139,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
         self.refresh()
 
 
-    def __get_len_of_int(self, num): return int(log10(num))+1 if not num == 0 else 0
+    def __get_len_of_int(self, num): return int(log10(num))+1 if not num == 0 else 1
 
 
     def __validate_feedback(self, repos): # TODO: Expand
