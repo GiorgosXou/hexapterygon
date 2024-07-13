@@ -93,10 +93,9 @@ class Hexapterygon(DeviceEvents): # TODO: restore via cmd package install-existi
 
         while event != 27 or debloater_ui.escape_event_consumed: 
             event = uc.get_wch()
+            if event == uc.KEY_RESIZE:uc.resize_term(0,0)
             debloater_ui.handle_events(event)
             debloater_ui.refresh()
-            if event == uc.KEY_RESIZE:
-                uc.resize_term(0,0)
         # print(END_MOUSE)
         uc.endwin()
 
