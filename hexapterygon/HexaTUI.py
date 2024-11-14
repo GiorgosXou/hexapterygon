@@ -86,6 +86,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
             Highlight(re.compile( r'(?<=│ ✓  )\[DONE\]')              , 5 , uc.A_BOLD  ),
             Highlight(re.compile( r'(?<=│ ✗  )\[FAILED\]')            , 3 , uc.A_BOLD  ),
             Highlight(re.compile( r'[0-9]+\.')                        , 2 , uc.A_BOLD  ),
+            Highlight(re.compile( r'(?<=│ ★  )[0-9]+\.')              , 2 , uc.A_BOLD  ),
             Highlight(re.compile( r'"(.*?)"')                         , 1 , uc.A_ITALIC),
             Highlight(re.compile( r'^│(?= ░)')                        , 2),
             Highlight(re.compile( r'^│ ✓')                            , 5),
