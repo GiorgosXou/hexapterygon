@@ -19,11 +19,11 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
         self.textbox_instructions.text = text + '\n' + self.textbox_instructions.text
 
 
-    def on_install(self, package, output):
+    def on_install(self, package, version, output):
         if output == InstallState.INSTALLED:
-            self.__append_instruction_text(f'│ ✓  [INSTALLED] {self.comment}')
+            self.__append_instruction_text(f'│ ✓  [INSTALLED] {f"v.{version}" if version else ""}')
         elif output == InstallState.ALREADY_INSTALLED:
-            self.__append_instruction_text(f'│ ○  [INSTALLED] {self.comment}')
+            self.__append_instruction_text(f'│ ○  [INSTALLED] {package}')
         else: # BLOCKED
             self.__append_instruction_text(f'│ ✗  [BLOCKED] Skipping installation') # TIMESTAMP TOOOOO
         self.refresh()
@@ -44,23 +44,26 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
         self.refresh()
 
 
-    def on_downloading(self,package, i, total_length): # TODO: replace the first line as an update
+    def on_downloading(self, package, i, total_length): # TODO: replace the first line as an update
         percentage =  int((i)*100/total_length)
         steps = int((i)*30/total_length)
         blanks = 30-steps 
-        if i == 1 : self.__append_instruction_text(f"│ ○  ├─ {'━'*steps}{' '*blanks} {percentage}%")
+        if i == 1 : self.__append_instruction_text(f"│ ○  ├── {'━'*steps}{' '*blanks} {percentage}%")
         lines = self.textbox_instructions.text.split('\n') 
-        self.textbox_instructions.text = f"│ ○  ├─ {'━'*steps}{' '*blanks} {percentage}%\n" + '\n'.join(lines[1:])
+        if not percentage == 100 :
+            self.textbox_instructions.text = f"│ ○  ├── {'━'*steps}{' '*blanks} {percentage}%\n" + '\n'.join(lines[1:])
+        else:
+            self.textbox_instructions.text = f"│ ○  ├── {'━'*steps}{' '*blanks}   \n" + '\n'.join(lines[1:])
         self.refresh()
 
 
-    def on_download(self, package, output):
+    def on_download(self, package, version, output):
         if output == DownloadState.BEGINS:
-            self.__append_instruction_text(f'│ ○  └─ [DOWNLOADING] {self.comment}')
+            self.__append_instruction_text(f'│ ○  ╰─ [DOWNLOADING] {package} {f"v.{version}" if version else ""}')
         elif output == DownloadState.FALLBACK:
             self.__append_instruction_text(f'│ ○  ├── Falling to another repository')
         elif output == DownloadState.SUCCEEDED:
-            self.__append_instruction_text(f'│ ✓  ┌─ Successfully downloaded')
+            self.__append_instruction_text(f'│ ✓  ╭─ [DOWNLOADED] Successfully')
         elif output == DownloadState.FAILED:
             self.__append_instruction_text(f'│ ✗  ┌─ Failed to download')
         self.refresh()
@@ -70,7 +73,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
         if output == UninstallState.UNINSTALLED:
             self.__append_instruction_text(f'│ ✓  [UNINSTALLED] {self.comment}')
         elif output == UninstallState.ALREADY_UNINSTALLED:
-            self.__append_instruction_text(f'│ ○  [ALREADY UNINSTALLED] {self.comment}')
+            self.__append_instruction_text(f'│ ○  [UNINSTALLED] {self.comment}')
         else:
             self.__append_instruction_text(f'│ ✗  Failed to uninstall {package}') # TIMESTAMP TOOOOO
         self.refresh()
@@ -78,31 +81,35 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
 
     def __add_components(self, win, color_pair_offset): # │
         self.label_device          = Label(1,2,'⟡ Informations: ', (False,False, True,True), width = self.columns-4, win = win, color_pair_offset = color_pair_offset)
-        self.label_info            = Label(self.lines-2 ,2,'● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2023 ░▒▓██▓▒░', (False,True, True,True), width = self.columns-4, win = win, color_pair_offset = color_pair_offset)
+        self.label_info            = Label(self.lines-2 ,2,'● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2024 ░▒▓██▓▒░', (False,True, True,True), width = self.columns-4, win = win, color_pair_offset = color_pair_offset)
         self.textbox_instructions  = TextBox(3,2, self.lines -6, self.columns -4 , ' ', (True,True, True,True),  win = win, color_pair_offset = color_pair_offset) #│ ✓  Press ESC to exit\n│ █▓▒░ Press ESC to exit ░▒▓█
         self.label_device.style    = uc.A_ITALIC | uc.A_BOLD 
         self.label_info.style      = uc.A_DIM
         self.label_info.color_pair = 2    
         patterns = [ # lol another piece of code for which I feel guilty for all the enviromental disaster it will create | CPU goes brrr
-            Highlight(re.compile( r'[0-9]+%')                         , 5 , uc.A_BOLD  ),
-            Highlight(re.compile( r'(?<=│ ✓  )\[DONE\]')              , 5 , uc.A_BOLD  ),
-            Highlight(re.compile( r'(?<=│ ✗  )\[FAILED\]')            , 3 , uc.A_BOLD  ),
-            Highlight(re.compile( r'[0-9]+\.')                        , 2 , uc.A_BOLD  ),
-            Highlight(re.compile( r'(?<=│ ★  )[0-9]+\.')              , 2 , uc.A_BOLD  ),
-            Highlight(re.compile( r'"(.*?)"')                         , 1 , uc.A_ITALIC),
-            Highlight(re.compile( r'^│(?= ░)')                        , 2),
-            Highlight(re.compile( r'^│ ✓')                            , 5),
-            Highlight(re.compile( r'^│ ✗')                            , 3),
-            Highlight(re.compile( r'^│ ○')                            , 2),
-            Highlight(re.compile( r'^│ ★')                            , 2),
-            Highlight(re.compile( r'\[[0-9]+( )+Stars\]')             , 2),
-            Highlight(re.compile( r'(Failed|Error|INVALID)')          , 3),
-            Highlight(re.compile( r' (━){1,5}')                       , 3),
-            Highlight(re.compile( r'(?<= ━━━━━)(━){1,12}')            , 2),
-            Highlight(re.compile( r'(?<= ━━━━━━━━━━━━━━━━━)(━){1,8}') , 5),
-            Highlight(re.compile( r'Successfully')                    , 5),
-            Highlight(re.compile( r'(┌───────────────────────────────────┐|└─|┌─|├─)'), 1, uc.A_DIM),
-            Highlight(re.compile( r'(LOADING|DOWNLOADING|ALREADY UNINSTALLED|UNINSTALLED|INSTALLED|SHELL|BLOCKED|UNINSTALLS|INSTALLS|DISABLES|IMPORTANT)'), 1, uc.A_DIM),
+            Highlight(re.compile( r'[0-9]+%')                                    , 5 , uc.A_DIM ),
+            Highlight(re.compile( r'(?<=│ ✓  )\[DONE\]')                         , 5 , uc.A_BOLD),
+            Highlight(re.compile( r'(?<=│ ✗  )\[FAILED\]')                       , 3 , uc.A_BOLD),
+            Highlight(re.compile( r'(?<=│ ○  )\[INSTALLED\]')                    , 1 , uc.A_DIM ),
+            Highlight(re.compile( r'(?<=│ ✓  )\[INSTALLED\]')                    , 5),
+            Highlight(re.compile( r'"(.*?)"')                                    , 1 , uc.A_ITALIC),
+            Highlight(re.compile( r'^│(?= ░)')                                   , 2),
+            Highlight(re.compile( r'^│ ✓')                                       , 5),
+            Highlight(re.compile( r'^│ ✗')                                       , 3),
+            Highlight(re.compile( r'^│ ○')                                       , 2),
+            Highlight(re.compile( r'^│ ★  [0-9]+\.')                             , 2 , uc.A_BOLD),
+            Highlight(re.compile( r'\[[0-9]+( )+Stars\]')                        , 2),
+            Highlight(re.compile( r'(Failed|Error|\[INVALID\])')                 , 3),
+            Highlight(re.compile( r' (━){1,3}')                                  , 3 , uc.A_DIM),
+            Highlight(re.compile( r'(?<= ━━━)(━){1,7}')                          , 3),
+            Highlight(re.compile( r'(?<= ━━━━━━━━━━)(━){1,12}')                  , 2),
+            Highlight(re.compile( r'(?<= ━━━━━━━━━━━━━━━━━━━━━━)(━){1,6}')       , 5),
+            Highlight(re.compile( r'(?<= ━━━━━━━━━━━━━━━━━━━━━━━━━━━━)(━){1,2}') , 5, uc.A_DIM),
+            Highlight(re.compile( r'Successfully')                               , 5),
+            Highlight(re.compile( r' v\.[0-9]+')                                 , 1, uc.A_ITALIC | uc.A_DIM),
+            Highlight(re.compile( r' Falling to another repository')             , 1, uc.A_ITALIC | uc.A_DIM),
+            Highlight(re.compile( r'(┌───────────────────────────────────┐|└─|╰─|┌─|╭─|├──|├─)'), 1, uc.A_DIM),
+            Highlight(re.compile( r'(LOADING|\[DOWNLOADING\]|\[DOWNLOADED\]|\[UNINSTALLED\]|\[SHELL\]|\[BLOCKED\]|UNINSTALLS|INSTALLS|DISABLES|IMPORTANT)'), 1, uc.A_DIM),
         ]
         self.textbox_instructions.set_inline_highlight_patterns(patterns)
 
@@ -151,7 +158,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
 
     def __validate_feedback(self, repos): # TODO: Expand
         if not (1 <= int(self.feedback) <= len(repos)):
-            self.__append_instruction_text(f'│ ✗  [INVALID] Out of range INPUT {self.feedback}')
+            self.__append_instruction_text(f'│ ✗  [INVALID] Out of range INPUT: {self.feedback}')
             self.feedback = ''
             self.refresh()
             return True
@@ -240,7 +247,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
     def __reset_feedback(self):
             self.__feedback       = ''
             self.label_info.style = uc.A_DIM
-            self.label_info.text  = '● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2023 ░▒▓██▓▒░'
+            self.label_info.text  = '● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2024 ░▒▓██▓▒░'
 
 
     def handle_feedback_over_thread(self, event):

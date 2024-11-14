@@ -7,7 +7,7 @@ import   unicurses as uc
 from   dataclasses import dataclass
 from         pipes import quote
 from            os import getenv, getcwd
-import textwrap
+import threading
 import re
 
 

@@ -147,7 +147,7 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
                     f.flush()
                     self.event_downloading(package, i, total_length) # f'"{package}" Successfully downloaded' | int((i)*100/total_length)
 
-        self.event_download(package, DownloadState.SUCCEEDED) # f'"{package}" Successfully downloaded'
+        self.event_download(package, version, DownloadState.SUCCEEDED) # f'"{package}" Successfully downloaded'
         return True
 
 
@@ -156,7 +156,7 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
         # check if chached
         response = requests.get(f'https://f-droid.org/api/v1/packages/{package}').json().get('suggestedVersionCode', None)
         if not response: 
-            self.event_download(package, DownloadState.FAILED) # '"{package}" Failed to download'
+            self.event_download(package, version, DownloadState.FAILED) # '"{package}" Failed to download'
             return (False, version)
         version = version if version else response
         return (self.__download(package, version), version)
@@ -167,15 +167,16 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
         tmp_pkg_splt = package.split('|')
         version = None if len(tmp_pkg_splt) == 1 else int(tmp_pkg_splt[1])
         package = tmp_pkg_splt[0]
+        pkgname = package
         if isfile(package) and package.endswith('.apk'):
             package = package
             # TODO: check if is_installed
         else: 
             if self.is_installed(package):
-                self.event_install(package, InstallState.ALREADY_INSTALLED) # '"{package}" Package is already installed'
+                self.event_install(pkgname, None, InstallState.ALREADY_INSTALLED) # '"{package}" Package is already installed'
                 return True
             # yield from (f"Downloading proccess at {i}%" for i in )
-            self.event_download(package, DownloadState.BEGINS) # f'"{package}" Successfully downloaded'
+            self.event_download(package, version, DownloadState.BEGINS) # f'"{package}" Successfully downloaded'
             downloaded, version = self.download(package, version)
             if downloaded:
                 package = f'{g.TMPAPP_PATH}{sep}{package}_{version}.apk'
@@ -183,11 +184,11 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
                 return False
         try:
             super().install(package, *args)
-            self.event_install(package, InstallState.INSTALLED) # '"{package}" Successfully installed'
+            self.event_install(pkgname, version, InstallState.INSTALLED) # '"{package}" Successfully installed'
             return True
         except InstallError: # TODO: self.push(path,) into a folder if no install allowed and there's enought space
             self.install_allowed = False
-            self.event_install(package, InstallState.BLOCKED) # 'Install is not allowed'
+            self.event_install(pkgname, version, InstallState.BLOCKED) # 'Install is not allowed'
             return False
 
 
