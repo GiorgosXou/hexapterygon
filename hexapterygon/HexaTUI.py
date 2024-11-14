@@ -3,10 +3,9 @@ import hexapterygon
 import unicurses as uc
 
 from .StateEnums import DownloadState, InstallState, UninstallState
-from .TUItilities import Border, Highlight, Label, TextBox, Parent
+from .TUItilities import Highlight, Label, TextBox, Parent, threading, lock
 from time import sleep
 import re
-import threading
 import hexapterygon.HexaGlobals as g
 
 
@@ -269,7 +268,9 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
 
 
     def refresh(self):
+        lock.acquire_lock()
         uc.wrefresh(self.win)
+        lock.release()
         self.label_info          .refresh()
         self.label_device        .refresh()
         self.textbox_instructions.refresh()

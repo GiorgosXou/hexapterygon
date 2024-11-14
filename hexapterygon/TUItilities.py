@@ -10,6 +10,9 @@ from            os import getenv, getcwd
 import textwrap
 import re
 
+
+lock = threading.Lock()
+
 # ======================== ========== ========================
 #                          -UTILITIES                         
 # ======================== ========== ========================
@@ -142,10 +145,12 @@ class Component():
 
 
     def refresh(self, redraw_parent=False):
+        lock.acquire_lock()
         if redraw_parent:
             uc.touchwin(self.parent.win) # Do i need this? YES
         uc.wrefresh(self.parent.win) # Do i need this? YES | IMPORTANT: wrefresh works only with windows, not pads also look at https://stackoverflow.com/a/35351060/11465149
         uc.prefresh(self.pad, self.position.iy, self.position.ix, self.position.y, self.position.x, self.position.y + self.size.height -1, self.position.x + self.size.width -1)
+        lock.release()
 
 
     @property #TODO: ADD descrition like use `self.position.x` instead if you don't want to redraw the `parent.win` immediately after
