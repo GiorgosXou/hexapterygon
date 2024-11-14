@@ -129,6 +129,16 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
 
     def __download(self, package, version): # TODO: add max retires
         r = requests.get(f'https://f-droid.org/repo/{package}_{version}.apk', stream=True)
+        if not r:
+            r = requests.get(f'https://f-droid.org/archive/{package}_{version}.apk', stream=True)
+            self.event_download(package, version, DownloadState.FALLBACK) # f'"{package}" Successfully downloaded'
+        if not r:
+            r = requests.get(f'https://apt.izzysoft.de/fdroid/repo/{package}_{version}.apk', stream=True)
+            self.event_download(package, version, DownloadState.FALLBACK) # f'"{package}" Successfully downloaded'
+        if not r:
+            self.event_download(package, version, DownloadState.FAILED) # f'"{package}" Successfully downloaded'
+            return False
+
         with open(f'{g.TMPAPP_PATH}{sep}{package}_{version}.apk', 'wb') as f:
             total_length = int(r.headers.get('content-length'))/1024
             for i, chunk in enumerate(r.iter_content(chunk_size=1024), start=1): #expected_size=(total_length/1024) + 1): 

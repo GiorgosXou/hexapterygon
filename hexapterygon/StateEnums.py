@@ -13,6 +13,7 @@ class UninstallState(Enum):
 
 
 class DownloadState(Enum):
+    FALLBACK  = 3
     BEGINS    = 2
     SUCCEEDED = 1
     FAILED    = 0

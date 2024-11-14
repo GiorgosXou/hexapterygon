@@ -57,6 +57,8 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
     def on_download(self, package, output):
         if output == DownloadState.BEGINS:
             self.__append_instruction_text(f'│ ○  └─ [DOWNLOADING] {self.comment}')
+        elif output == DownloadState.FALLBACK:
+            self.__append_instruction_text(f'│ ○  ├── Falling to another repository')
         elif output == DownloadState.SUCCEEDED:
             self.__append_instruction_text(f'│ ✓  ┌─ Successfully downloaded')
         elif output == DownloadState.FAILED:
