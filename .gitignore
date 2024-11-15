@@ -1,5 +1,6 @@
 # Other user specific
 tests
+tst.txt
 
 # Byte-compiled / optimized / DLL files
 __pycache__/
