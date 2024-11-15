@@ -23,7 +23,7 @@ Less bloatware, less spyware, improved privacy and performance from within the e
 - - [Uni-curses](https://github.com/unicurses/unicurses) compatible component
 - - Auto removes-installs-executes
 - - User-friendly \ easy-to-use
-- - Fixed-version pkg control
+- - [Fixed-version pkg control](#-questions)
 - - Can be used as a module
 - - Cross-platform
 - ***Future:***
@@ -87,26 +87,46 @@ My research can be found under my personal debloating list [here](https://github
 
 # 💭 Questions
 
-> How do I install [Android SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools)?
+<details>
+<summary><i>How do I install <a href="https://developer.android.com/studio/releases/platform-tools" target="_blank">Android SDK Platform Tools</a>?</i></summary>
 
-You either manually download the tools from the link above and install them or use your package manager to install them like for example: `sudo pacman -S android-tools` *(following this [video for windows](https://www.youtube.com/watch?v=26GI3z6tI3E))*
+> You either manually download the tools from the link above and install them or use your package manager to install them like for example: `sudo pacman -S android-tools` *(following this [video for windows](https://www.youtube.com/watch?v=26GI3z6tI3E))*
 
-> How do I make sure [Android SDK Platform Tools](https://developer.android.com/studio/releases/platform-tools) and `adb` are installed?
+</details>
+<details>
+<summary><i>How do I make sure <a href="https://developer.android.com/studio/releases/platform-tools" target="_blank">Android SDK Platform Tools</a> and `adb` are installed?</i></summary>
 
-Just run `hexapterygon` or the command `adb shell` while the phone is connected *(with `USB debugging` already enabled)*, a pop-up message on you phone should show-up, to allow the computer to connect to it
+> Just run `hexapterygon` or the command `adb shell` while the phone is connected *(with `USB debugging` already enabled)*, a pop-up message on you phone should show-up, to allow the computer to connect to it
 
-> Where are `Device admin apps` and what do I disable?
+</details>
+<details>
+<summary><i>Where are `Device admin apps` and what do I disable?</i></summary>
 
-Somewhere under settings, depends on the device. 
+> Somewhere under settings, depends on the device. 
+
+</details>
+<details>
+<summary><i>Why do I get a `github.GithubException.RateLimitExceededException` and what can I do?</i></summary>
+
+> Most probably because you exceeded the github's limit for requests without a token. To solve this, you can either restart your rooter or provide a classic github-token *(without any special permissions checked)*
+
+</details>
+<details>
+<summary><i>How do I get the {type_identifier}?</i></summary>
+
+> Just run the command `hexapterygon --getid` *(while your authorized device is connected)*
+
+</details>
+<details>
+<summary><i>How do I use version control for a package?</i></summary>
+
+> Simply do `my.package.name|v` where v is the version-number
+
+</details>
 
 
-> Why do I get a `github.GithubException.RateLimitExceededException` and what can I do?
 
-Most probably because you exceeded the github's limit for requests without a token. To solve this, you can either restart your rooter or provide a classic github-token *(without any special permissions checked)*
 
-> How do i get the {type_identifier}?
-
-Just run the command `hexapterygon --getid` *(while your authorized device is connected)*
 
 
 
