@@ -45,7 +45,7 @@ Before begining the process of debloating, make sure you:
 - Enabled [Security settings](## 'Allow granting permissions and simulating input via USB (if possible)') & [Install via USB](## '[INSTALL] installing won\'t work if it is not enabled') *(optionally, [usually necessary])*
 - Disabled services under `setting > ... > Device admin apps` *(optionally)*
 
-*<sup>[click here for more informations](#💭-questions)</sup>*
+*<sup>[click here for more informations](#-questions)</sup>*
 
 # 💥 Debloat
 To begin the proccess of debloating you either just run `hexapterygon` in your terminal *(while your device is connected and configured)* or `hexapterygon`  and the path-*(file\folder)* or repository to you debloating list(s) like:
