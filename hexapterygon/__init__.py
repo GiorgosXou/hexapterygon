@@ -9,7 +9,7 @@ from shutil import rmtree
 
 
 
-__version__ = '1.1.0'
+__version__ = '1.1.1'
 def get_global_server_repo(): return g.SERVER_REPO
 def set_global_server_repo(value): g.SERVER_REPO = value
 def set_github_token      (value): g.GIT         = Github(login_or_token=value)
