@@ -81,7 +81,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
 
     def __add_components(self, win, color_pair_offset): # │
         self.label_device          = Label(1,2,'⟡ Informations: ', (False,False, True,True), width = self.columns-4, win = win, color_pair_offset = color_pair_offset)
-        self.label_info            = Label(self.lines-2 ,2,'● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2024 ░▒▓██▓▒░', (False,True, True,True), width = self.columns-4, win = win, color_pair_offset = color_pair_offset)
+        self.label_info            = Label(self.lines-2 ,2,'● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2025 ░▒▓██▓▒░', (False,True, True,True), width = self.columns-4, win = win, color_pair_offset = color_pair_offset)
         self.textbox_instructions  = TextBox(3,2, self.lines -6, self.columns -4 , ' ', (True,True, True,True),  win = win, color_pair_offset = color_pair_offset) #│ ✓  Press ESC to exit\n│ █▓▒░ Press ESC to exit ░▒▓█
         self.label_device.style    = uc.A_ITALIC | uc.A_BOLD 
         self.label_info.style      = uc.A_DIM
@@ -247,7 +247,7 @@ class HexaTUI(Parent): # And a Component that can be used stand alone as it is w
     def __reset_feedback(self):
             self.__feedback       = ''
             self.label_info.style = uc.A_DIM
-            self.label_info.text  = '● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2024 ░▒▓██▓▒░'
+            self.label_info.text  = '● Press ESC to exit  ░▒▓██▓▒░ HEXAPTERYGON 2025 ░▒▓██▓▒░'
 
 
     def handle_feedback_over_thread(self, event):
