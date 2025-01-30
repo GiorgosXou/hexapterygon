@@ -5,7 +5,6 @@ SOURCE: https://github.com/GiorgosXou/TUIFIManager/blob/master/TUIFIManager/TUIt
 from typing import List
 import   unicurses as uc
 from   dataclasses import dataclass
-from         pipes import quote
 from            os import getenv, getcwd
 import threading
 import re
@@ -24,25 +23,6 @@ HOME_DIR       = getenv('UserProfile') if IS_WINDOWS else getenv('HOME')
 SHELL          = getenv('SHELL') # https://stackoverflow.com/a/35662469/11465149 | https://superuser.com/questions/1515578/
 IS_TERMUX      = 'com.termux' in HOME_DIR
 
-
-class Cd: # https://stackoverflow.com/a/16694919/11465149
-    directory  = HOME_DIR 
-    perform_cd = True
-
-    def quote_against_shell_expansion(self, s):
-        return quote(s)
-
-    def put_text_back_into_terminal_input_buffer(self, text):
-        from termios import TIOCSTI
-        from   fcntl import ioctl 
-        for c in text: ioctl(1, TIOCSTI, c)
-
-    def cd(self, dest): # change_parent_process_directory
-        self.put_text_back_into_terminal_input_buffer("cd "+self.quote_against_shell_expansion(dest)+"\n")
-
-    def __del__(self):
-        if self.perform_cd and not IS_WINDOWS and not self.directory == getcwd():
-             self.cd(self.directory)
 
 
 # ======================== ========== ========================
