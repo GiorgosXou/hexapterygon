@@ -139,6 +139,7 @@ class DeviceOverlay(Device, DeviceEvents): # TODO 2023-04-02 01:59:35 AM No need
             self.event_download(package, version, DownloadState.FAILED) # f'"{package}" Successfully downloaded'
             return False
 
+        #TODO: add a try catch
         with open(f'{g.TMPAPP_PATH}{sep}{package}_{version}.apk', 'wb') as f:
             total_length = int(r.headers.get('content-length'))/1024
             for i, chunk in enumerate(r.iter_content(chunk_size=1024), start=1): #expected_size=(total_length/1024) + 1): 
